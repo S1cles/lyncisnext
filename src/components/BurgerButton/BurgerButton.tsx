@@ -23,14 +23,15 @@ const BurgerButton: React.FC<BurgerButtonProps> = ({ title, list }) => {
                     <AiOutlineCaretDown />
                 </Flex>
             </MenuButton>
+
             <Portal>
-            <MenuList portal={true} zIndex="dropdown">
-                {list.map((link) => (
-                    <MenuItem key={link.title} as={Link} href={link.href}>
-                        <Text color="red.500">{link.title}</Text>
-                    </MenuItem>
-                ))}
-            </MenuList>
+                <MenuList zIndex="dropdown">
+                    {list.map((link) => (
+                        <MenuItem key={link.title} as={Link} href={link.href}>
+                            <Text color="red.500">{link.title}</Text>
+                        </MenuItem>
+                    ))}
+                </MenuList>
             </Portal>
         </Menu>
     );

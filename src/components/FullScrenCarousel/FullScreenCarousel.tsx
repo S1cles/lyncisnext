@@ -67,7 +67,7 @@ export default function MotionSlider() {
                     <Flex
                         direction="column"
                         align={card.side === 'center' ? 'center' : card.side === 'left' ? 'flex-start' : 'flex-end'}
-                        textAlign={card.side}
+                        textAlign={card.side as "left" | "right" | "center"}
                         gap={6}
                         zIndex={1}
                         maxW="800px"

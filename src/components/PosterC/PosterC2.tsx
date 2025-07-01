@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import {IoMdClose} from "react-icons/io";
 import { motion, AnimatePresence } from 'framer-motion';
+import {MotionVideo} from "@/utils/motion-elements";
 
 const MotionBox = motion(Box);
 
@@ -63,7 +64,11 @@ const PosterC: React.FC<PosterCProps> = ({
                         overflow="hidden"
                     >
                         {/* Видеофон */}
-                        <MotionBox
+                        <MotionVideo
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
                             as="video"
                             ref={videoRef}
                             src={videoSrc}
@@ -75,10 +80,7 @@ const PosterC: React.FC<PosterCProps> = ({
                             h="100%"
                             objectFit="cover"
                             position="absolute"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 1 }}
+
                         />
 
                         {/* Блок описания */}

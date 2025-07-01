@@ -1,4 +1,4 @@
-import { extendTheme, type StyleFunctionProps } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react'
 
 export const theme = extendTheme({
 
@@ -21,7 +21,7 @@ export const theme = extendTheme({
             variants: {
 
 
-                solid: (props) => {
+                solid: (props: { colorScheme: string; colorMode: string; }) => {
                     const { colorScheme, colorMode } = props;
 
                     if (colorScheme === 'red' && colorMode === 'dark') {
@@ -36,7 +36,7 @@ export const theme = extendTheme({
                     },
 
 
-                outline: (props: StyleFunctionProps) => ({
+                outline: () => ({
                     border: '2px solid',
                     // borderColor: `${props.colorScheme}.500`,
                     color: 'red.500', // фиксированное значение — можно также сделать `${props.colorScheme}.500`

@@ -9,7 +9,6 @@ import {
     Divider,
     Flex,
     Heading,
-    Image,
     Stack, Text
 } from "@chakra-ui/react";
 import FullscreenCarousel from "@/components/FullScrenCarousel/FullScreenCarousel";
@@ -19,7 +18,7 @@ import {data1, data2, data3, dataCards} from "@/data/text";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import SectionText from "@/components/SectionText/SectionText";
 import ListBlock from "@/components/ListBlock/ListBlock";
-import PosterC from "@/components/PosterC/PosterC";
+// import PosterC from "@/components/PosterC/PosterC";
 import InfoPosterC from "@/components/InfoPosterC/InfoPosterC";
 import PosterSection from "@/components/PosterC/PosterSection";
 
@@ -55,7 +54,7 @@ const Index = () => {
                     {/*    <PosterC height={400} title={'123'} desc={'desc'} image={'/Lyncis/4-Pica.png'}/>*/}
                     {/*</Flex>*/}
                     <Box mt={'2em'} ></Box>
-                    {/*<PosterSection />*/}
+                    <PosterSection />
 
                         <Box mt={'5em'} ></Box>
                         <SectionHeading text={'Benefits for our clients'} highlight={'clients'}/>
@@ -94,7 +93,7 @@ const Index = () => {
 
                     <Stack>
                         <CardBody textAlign={'center'}>
-                            <Heading size='md'>Let's start collaborating in the mining industry</Heading>
+                            <Heading size='md'>Lets start collaborating in the mining industry</Heading>
 
                             <Text py='2'>
                                 We understand better than anyone how important it is for you to make things happen exactly as planned. That’s why we take the time to discuss every detail, every step — making sure nothing gets missed. Whether it’s coordination, adjustments, or just support, our team is always here to help. And if you ever need to talk, our managers are ready to call you whenever it’s convenient for you.
