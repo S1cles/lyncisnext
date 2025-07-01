@@ -4,7 +4,7 @@ import {
     Button, Flex,
     Heading,
     IconButton,
-    Text,
+    Text, useMediaQuery,
 } from '@chakra-ui/react';
 import {IoMdClose} from "react-icons/io";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -43,6 +43,8 @@ const PosterC: React.FC<PosterCProps> = ({
             if (videoRef.current) videoRef.current.currentTime = 0;
         }
     }, [isActive]);
+
+    const [isLargerThan870] = useMediaQuery('(min-width: 870px)');
 
     return (
         <>
@@ -134,7 +136,7 @@ const PosterC: React.FC<PosterCProps> = ({
                     color="white"
                     overflow="hidden"
                     cursor="pointer"
-                    onClick={onClick}
+                    onClick={isLargerThan870? onClick : undefined}
                     boxShadow="lg"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
@@ -159,8 +161,16 @@ const PosterC: React.FC<PosterCProps> = ({
                     >
                         <Heading size="md">{title}</Heading>
                         <Box flex="1" />
+                        {
+                            isLargerThan870 ? undefined : (
+                                <Button w={'100%'} variant={'solid'} mt={4} colorScheme="red" size="sm">
+                                    View here
+                                </Button>
+                            )
+                        }
 
                     </Flex>
+
                 </MotionBox>
             )}
         </>

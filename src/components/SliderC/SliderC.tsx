@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Flex} from "@chakra-ui/react";
+import {Box, Flex, useMediaQuery} from "@chakra-ui/react";
 import CardC from "@/components/CardC/CardC";
 
 type CardData = {
@@ -12,9 +12,10 @@ interface SliderCProps {
 }
 
 const SliderC: React.FC<SliderCProps> = ({ cards }) => {
+    const [isLargerThan1000] = useMediaQuery('(min-width: 1070px)');
     return (
 
-            <Box overflowX="auto" px={4} py={6}                  maxW={'1200px'}>
+                <Box overflowX="auto" px={4} py={6} maxW={isLargerThan1000?'1200px':'100%'}>
 
                 <Flex
                     gap={8}

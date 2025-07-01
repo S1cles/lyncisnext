@@ -8,8 +8,8 @@ import {
     Container,
     Divider,
     Flex,
-    Heading,
-    Stack, Text
+    Heading, Image,
+    Stack, Text, useMediaQuery
 } from "@chakra-ui/react";
 import FullscreenCarousel from "@/components/FullScrenCarousel/FullScreenCarousel";
 import ParallaxBlock from "@/components/Parallax/Parallax";
@@ -25,6 +25,7 @@ import PosterSection from "@/components/PosterC/PosterSection";
 
 
 const Index = () => {
+    const [isLargerThan1000] = useMediaQuery('(min-width: 1070px)');
     return (
         <Box>
 
@@ -58,7 +59,7 @@ const Index = () => {
 
                         <Box mt={'5em'} ></Box>
                         <SectionHeading text={'Benefits for our clients'} highlight={'clients'}/>
-                        <Flex mt={5} gap={10} justifyContent={'space-between'} textAlign={'center'} >
+                        <Flex mt={5} gap={10} justifyContent={'space-between'} textAlign={'center'} flexWrap={'wrap'} flexDirection={isLargerThan1000? 'row':'column' }>
                             <InfoPosterC height={400} title={'FINANCIAL BENEFIT:'} desc={'Increased Revenue\n' +
                                 'from higher quality product'} desc2={'Reduce Energy and Raw Material Consumption\n' +
                                 'by applying prompt process control'} image={'/Lyncis/shesternia.svg'} />
@@ -84,12 +85,12 @@ const Index = () => {
                     background={'red.500'}
 
                 >
-                    {/*<Image*/}
-                    {/*    objectFit='cover'*/}
-                    {/*    maxW={{ base: '100%', sm: '200px' }}*/}
-                    {/*    src='/Lyncis/alex.jpg'*/}
-                    {/*    alt='Caffe Latte'*/}
-                    {/*/>*/}
+                    <Image
+                        objectFit='cover'
+                        maxW={{ base: '100%', sm: '200px' }}
+                        src='/Lyncis/alex.jpg'
+                        alt='Caffe Latte'
+                    />
 
                     <Stack>
                         <CardBody textAlign={'center'}>

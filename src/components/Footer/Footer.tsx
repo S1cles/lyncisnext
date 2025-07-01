@@ -1,15 +1,16 @@
 import React from 'react';
-import {Avatar, Box, Flex, Image, Link, Stack, Text} from "@chakra-ui/react";
+import {Avatar, Box, Flex, Image, Link, Stack, Text, useMediaQuery} from "@chakra-ui/react";
 
 const Footer = () => {
+    const [isLargerThan1000] = useMediaQuery('(min-width: 1070px)');
     return (
         <Box flexDirection={'column'} justifyContent={'center'} alignItems={'center'} margin={20}>
             <hr/>
 
-            <Flex flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+            <Flex flexDirection={ isLargerThan1000 ? 'row' : "column"} justifyContent={'space-between'} alignItems={'center'}>
 
                 <Box flex={1}>
-                    <Stack direction='row'>
+                    <Stack direction='row' mt={5}>
                         <Link href={'/'}>
                             <Avatar name='Youtube' src='https://imgs.search.brave.com/Hk2lS_TWEKQq5br_poXpUw_VIxkRY7b63rJnng4_NgI/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9wbGF5/LWxoLmdvb2dsZXVz/ZXJjb250ZW50LmNv/bS82YW0waTN3YWxZ/d05MYzA4UU9PaFJK/dHRRRU5OR2tobEth/alhTRVJmM0puUFZS/UWN6SXl4dzJ3M0R4/ZU1SVE9TZHNZ' />
                         </Link>

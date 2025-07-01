@@ -41,6 +41,7 @@ const InfoPosterC: React.FC<CardCProps> = ({image, title,desc,desc2,height}) => 
               w="100%"
 
 
+
         >
             <CardHeader textAlign={'center'}  borderRadius={'14px'}>
                 <Image maxW={100} src={image} alt={'image'}/>
