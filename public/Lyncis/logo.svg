@@ -1,0 +1,22 @@
+<svg width="180" height="90" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .black { fill: #222; }
+        .red { fill: #e30613; }
+    </style>
+
+    <!-- Letters -->
+    <text x="20" y="100" font-family="Arial, sans-serif" font-size="80" class="black">L</text>
+    <text x="70" y="100" font-family="Arial, sans-serif" font-size="80" class="red">Y</text>
+    <text x="130" y="100" font-family="Arial, sans-serif" font-size="80" class="black">N</text>
+    <text x="200" y="100" font-family="Arial, sans-serif" font-size="80" class="black">C</text>
+    <text x="270" y="100" font-family="Arial, sans-serif" font-size="80" class="red">I</text>
+    <text x="300" y="100" font-family="Arial, sans-serif" font-size="80" class="black">S</text>
+
+    <!-- Underline -->
+    <rect x="20" y="110" width="310" height="6" fill="#222"/>
+
+    <!-- Red spark/star -->
+    <g transform="translate(330, 130)" fill="#e30613">
+        <path d="M0,-8 L2,-2 L8,0 L2,2 L0,8 L-2,2 L-8,0 L-2,-2 Z" />
+    </g>
+</svg>
