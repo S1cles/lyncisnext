@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-    Button,
     Card,
     CardBody,
     CardFooter,
     CardHeader,
-    Center,
     Divider,
     Flex,
     Heading,
@@ -45,7 +43,7 @@ const InfoPosterC: React.FC<CardCProps> = ({image, title,desc,desc2,height}) => 
 
         >
             <CardHeader textAlign={'center'}  borderRadius={'14px'}>
-                <Image maxW={100} src={image}/>
+                <Image maxW={100} src={image} alt={'image'}/>
             </CardHeader>
             <CardBody>
                 <Heading  size={'md'}>{title}</Heading>

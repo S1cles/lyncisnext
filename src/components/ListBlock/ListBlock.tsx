@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Center, Divider, Flex, Heading, Highlight, List, ListIcon, ListItem} from "@chakra-ui/react";
+import {Box, Center, Flex, List, ListIcon, ListItem} from "@chakra-ui/react";
 import {IoMdSettings} from "react-icons/io";
 import SectionText from "@/components/SectionHeading/SectionHeading";
 

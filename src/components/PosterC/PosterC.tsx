@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardBody, CardFooter, CardHeader, Center, Heading, Text} from "@chakra-ui/react";
+import {Button, Card, CardBody, CardFooter, CardHeader, Heading, Text} from "@chakra-ui/react";
 
 interface CardCProps {
     image: string;
