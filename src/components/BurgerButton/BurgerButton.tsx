@@ -1,11 +1,20 @@
 import React from 'react';
-import {Button, Flex, Menu, MenuButton, MenuItem, MenuList, Portal, Text} from "@chakra-ui/react";
-import Link from "next/link";
+import {
+    Button,
+    Flex,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Portal,
+    Text,
+} from '@chakra-ui/react';
+import Link from 'next/link';
 import { UrlObject } from 'url';
-import { AiOutlineCaretDown } from "react-icons/ai";
+import { AiOutlineCaretDown } from 'react-icons/ai';
 
 type BurgerLink = {
-    href: string | UrlObject;
+    link: string | UrlObject; // делаем href необязательным и допускаем null
     title?: string;
 };
 
@@ -26,11 +35,15 @@ const BurgerButton: React.FC<BurgerButtonProps> = ({ title, list }) => {
 
             <Portal>
                 <MenuList zIndex="dropdown">
-                    {list.map((link) => (
-                        <MenuItem key={link.title} as={Link} href={link.href}>
-                            <Text color="red.500">{link.title}</Text>
-                        </MenuItem>
-                    ))}
+                    {list.map((burger, index) => {
+
+
+                        return (
+                            <MenuItem key={index} as={Link} href={burger?.link}>
+                                <Text color="red.500">{burger?.title ?? 'Untitled'}</Text>
+                            </MenuItem>
+                        );
+                    })}
                 </MenuList>
             </Portal>
         </Menu>

@@ -6,23 +6,83 @@ import {
     Flex,
     HStack,
     Image,
-    Link,
     Stack,
     useColorMode, useDisclosure, useMediaQuery,
 } from '@chakra-ui/react';
 import { FaRegMoon, FaRegSun } from 'react-icons/fa';
 import BurgerButton from '@/components/BurgerButton/BurgerButton';
-import {
-    linksIndustries,
-    linksProducts,
-    linksTechnology,
-} from '@/data/links';
+// import {
+//     linksIndustries,
+//     linksProducts,
+//     linksTechnology,
+// } from '@/data/links';
 import { motion, useScroll } from 'framer-motion';
 import {IoMdMenu} from "react-icons/io";
+import axios from "axios";
+import Link from 'next/link';
+
 
 const MotionFlex = motion(Flex);
 
+type BurgerButton = {
+    id: number;
+    burger_btn: string;
+    burger_link: string;
+};
+
+type MenuItem = {
+    id: number;
+    text_btn: string;
+    link_btn: string | null;
+    burger: boolean;
+    burger_btn: BurgerButton[];
+};
+
+type Logo = {
+    logo_link: string;
+    logo_img: {
+        url: string;
+    };
+};
+
+type Contact = {
+    contact_text: string;
+    contact_link: string;
+};
+
+type Nav = {
+    menu: MenuItem[];
+    logo: Logo;
+    contact: Contact;
+};
+
 const Header = () => {
+
+    const [menuData, setMenuData] = useState<Nav | null>(null);
+
+    useEffect(() => {
+        const fetchGlobalData = async () => {
+            try {
+                const res = await axios.get('http://localhost:1337/api/global', {
+                    params: {
+                        'populate[nav][populate][menu][populate][burger_btn]': true,
+                        'populate[nav][populate][logo][populate][logo_img]': true,
+                        'populate[nav][populate][contact]': true,
+                    },
+                });
+                setMenuData(res.data.data.nav);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+        };
+
+        fetchGlobalData();
+    }, []);
+
+    // if (!menuData) return <div>Загрузка меню...</div>;
+
+
+
     const { toggleColorMode, colorMode } = useColorMode();
 
     const { scrollY } = useScroll();
@@ -64,24 +124,20 @@ const Header = () => {
                     transition={{ duration: 0.8, ease: 'easeInOut' }}
                 >
                     <Stack direction="row" maxW="200px" maxH="80px" mt={2}>
-                        {colorMode === 'light' ? (
+                        <Link href={menuData?.logo?.logo_link as string || '/home'}>
                             <Image
                                 width="100%"
                                 height="auto"
                                 objectFit="cover"
                                 // src="/Lyncis/logo.svg"
-                                src="/Lyncis/logo2.svg"
+                                src={
+                                    menuData?.logo?.logo_img?.url
+                                        ? `http://localhost:1337${menuData.logo.logo_img.url}`
+                                        : '/Lyncis/logo2.svg'
+                                }
                                 alt="Lyncis light"
                             />
-                        ) : (
-                            <Image
-                                width="100%"
-                                height="auto"
-                                objectFit="cover"
-                                src="/Lyncis/logo2.svg"
-                                alt="Lyncis dark"
-                            />
-                        )}
+                        </Link>
                     </Stack>
 
                     <HStack
@@ -103,35 +159,53 @@ const Header = () => {
                         }}
                         p={1}
                     >
-                        <Link href="/">
-                            <Button border="hidden">Home</Button>
-                        </Link>
+                        {menuData?.menu.map((item) => {
+                            const hasSubmenu = item.burger && item.burger_btn?.length > 0;
+                            const isValidLink =
+                                typeof item.link_btn === 'string' && item.link_btn.trim() !== '';
 
-                        <BurgerButton title="Products" list={linksProducts} />
-                        <BurgerButton title="Industries" list={linksIndustries} />
-                        <BurgerButton title="Technology" list={linksTechnology} />
-                        <Link href="/">
-                            <Button border="hidden">About us</Button>
-                        </Link>
-                        <Link href="/">
-                            <Button border="hidden">News</Button>
-                        </Link>
-                        <Link href="/">
-                            <Button border="hidden">Technical Resources</Button>
-                        </Link>
+                            if (hasSubmenu) {
+                                return (
+                                    <BurgerButton
+                                        key={item.id}
+                                        title={item.text_btn}
+                                        list={item.burger_btn.map((btn) => ({
+                                            title: btn.burger_btn,
+                                            link: btn.burger_link,
+                                        }))}
+                                    />
+                                );
+                            }
+
+                            if (isValidLink) {
+                                return (
+                                    <Link key={item.id} href={item.link_btn as string} passHref>
+                                        <Button variant="ghost" border="none">
+                                            {item.text_btn}
+                                        </Button>
+                                    </Link>
+                                );
+                            }
+
+                            return (
+                                <Button key={item.id} variant="ghost" border="none" isDisabled opacity={0.6}>
+                                    {item.text_btn}
+                                </Button>
+                            );
+                        })}
                     </HStack>
 
-                    <Flex>
-                        <Link href="/" p={1}>
-                            <Button variant="solid" bg="red.500">
-                                Contact us
+                    <Flex gap={2}>
+                        <Link href={menuData?.contact.contact_link as string || '/'} passHref>
+                            <Button as="a" variant="solid" bg="red.500" m={1}>
+                                {menuData?.contact?.contact_text || 'Contact us'}
                             </Button>
                         </Link>
                         <Button
-                            p={1}
+                            m={1}
                             color={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
                             colorScheme={colorMode === 'light' ? 'blackAlpha' : 'whiteAlpha'}
-                            m={1}
+
                             onClick={toggleColorMode}
                         >
                             {colorMode === 'light' ? <FaRegSun /> : <FaRegMoon />}
@@ -163,6 +237,9 @@ const Header = () => {
                             alt="Lyncis light"
                         />
                     ) : (
+
+ // ___________________________________________________________________________________________________________
+
                         <Image
                             width="100%"
                             height="auto"
