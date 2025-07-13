@@ -107,7 +107,8 @@ const Header = () => {
     const [isLargerThan1000] = useMediaQuery('(min-width: 1070px)');
     return (
             <Box>
-                {isLargerThan1000 ? ( <MotionFlex
+                {isLargerThan1000 ? (
+                    <MotionFlex
                     position="fixed"
                     top={0}
                     left={0}
@@ -211,7 +212,10 @@ const Header = () => {
                             {colorMode === 'light' ? <FaRegSun /> : <FaRegMoon />}
                         </Button>
                     </Flex>
-                </MotionFlex>):(
+                </MotionFlex>
+
+                    // ___________________________________________________________________________________________________________
+                ):(
 
             <Flex w={'100%'} justifyContent="space-between" flexDirection={'row'} alignItems="center"  bg={colorMode ? "rgba(26, 32, 44, 0.2)" : "rgba(26, 32, 44, 0.9)"} position={'fixed'} zIndex={'200'}
                   backdropFilter="blur(6px)"
@@ -238,7 +242,7 @@ const Header = () => {
                         />
                     ) : (
 
- // ___________________________________________________________________________________________________________
+
 
                         <Image
                             width="100%"

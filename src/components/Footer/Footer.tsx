@@ -22,7 +22,7 @@ const Footer = () => {
 
     const  [footerData,setFooterData] = useState<FooterData | null>(null);
     useEffect(() => {
-        const fetchGlobalData = async () => {
+        const fetchFooterData = async () => {
             try {
                 const res = await axios.get('http://localhost:1337/api/global', {
                     params: {
@@ -36,7 +36,7 @@ const Footer = () => {
             }
         };
 
-        fetchGlobalData();
+        fetchFooterData();
     }, []);
 
 

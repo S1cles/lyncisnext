@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
     Box, Button,
     Card,
@@ -24,7 +24,14 @@ import PosterSection from "@/components/PosterC/PosterSection";
 
 
 
+
 const Index = () => {
+
+
+
+
+
+
     const [isLargerThan1000] = useMediaQuery('(min-width: 1070px)');
     return (
         <Box>
